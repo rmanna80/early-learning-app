@@ -20,6 +20,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "851b90d5-8bba-434b-b927-e0cf8290e09d"
+      }
+    },
+    "owner": "rjkrilla"
   }
 }
