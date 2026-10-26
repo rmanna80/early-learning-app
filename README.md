@@ -6,11 +6,12 @@ A free, offline-first learning app for children around age 3. Nothing about the 
 
 | Part | Status |
 | --- | --- |
-| Expo SDK 58 app (React Native 0.88, TypeScript) | Blank starter screen from the official template |
+| Expo SDK 58 app (React Native 0.88, TypeScript) | `App.tsx` shows a temporary recommender preview screen |
 | `src/core/content` | Activity types and a catalog checker |
 | `src/content/catalog.ts` | Metadata for the 24 MVP activities (pending educator review) |
 | `src/core/recommender` | Rule-based recommender with parent-facing reasons |
-| Tests | 31 passing (`npm test`) |
+| `src/dev/scenarios.ts` | Fake play histories for the preview screen (delete with it later) |
+| Tests | 35 passing (`npm test`), including a render test of the preview screen |
 | Screens, activity engine, audio, SQLite, dashboard | Not started |
 
 ## Set up on Windows (PowerShell)
@@ -19,7 +20,8 @@ Needs Node.js 22.13 or newer (`node --version`) and Git. Keep the project **outs
 
 ```powershell
 New-Item -ItemType Directory -Force C:\dev | Out-Null
-Expand-Archive "$env:USERPROFILE\Downloads\early-learning-app.zip" -DestinationPath C:\dev -Force
+Set-Location C:\dev
+git clone https://github.com/rmanna80/early-learning-app.git
 Set-Location C:\dev\early-learning-app
 npm install
 npm test            # runs all tests
@@ -27,12 +29,18 @@ npm run typecheck   # TypeScript check
 npx expo start      # dev server; scan the QR code with Expo Go
 ```
 
-The changes on top of the Expo template are not committed yet. Review them with `git status` and `git diff`, then commit:
+## Getting updates
+
+New work arrives as commits on GitHub. To bring your copy up to date:
 
 ```powershell
-git add -A
-git commit -m "Add learning core: content types, catalog, recommender, tests"
+Set-Location C:\dev\early-learning-app
+git pull
+npm install         # only changes anything when package.json changed
+npm test
 ```
+
+Commit or stash your own local changes before pulling.
 
 Always add Expo packages with `npx expo install <package>` so versions match SDK 58.
 
